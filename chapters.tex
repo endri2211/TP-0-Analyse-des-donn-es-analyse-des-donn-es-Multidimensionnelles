@@ -1,0 +1,183 @@
+%\chapter*{Résumé}
+\chapter*{Introduction et Sommaire}
+Dans ce TP, nous allons voir, à l'aide du logiciel R, quelques manipulations élémentaire autour de l'inertie sur notre base de données contenant divers information sur les vins provenant de Loire.
+Nous allons tous d'abord centrer-réduire nos variables quantitatives et calculer le barycentre du nuage, puis nous allons calculer les normes euclidiennes  de nos 3 types de vins (Bourgeuil, Chinon, Sammur). Nous allons calculer aussi l'inertie inter-appelation, Le $R^2$ de nos vins.
+
+Enfin, nous allons voir aussi les variables les plus liées à l'appellation ainsi que voir que le $R^2$ de la partition est égal à la moyenne arithmétique des $R^2$ des variables.
+\chapter{Quelques manipulations élémentaires
+autour de l'inertie (des vins de Loire)}
+\section{Notre Base de Données}
+Nous allons utilisé la base de données \textbf{"wine.csv"} contenant les données relatives aux vin de la Loire, elle contient deux variables qualitatives:
+\begin{itemize}
+    \item \textbf{Label:} Bourgueil, Chinon, Saumur
+    \item \textbf{Soil:} Env1, Env2, Env3=référence, Env4
+\end{itemize}
+ainsi que 29 variables quantitatives décrivant diverses intensités sensorielles:  \textbf{Odor Before Shaking, Aroma Before Shaking, Fruity Before Shaking, Flower Before Shaking, Spice Before Shaking, Visual Intensity, Nuance, Surface Feeling, Odor Intensity, Quality of Odour, Fruity, Flower, Spice, Plante, Phenolic, Aroma Intensity, Aroma Persistency, Aroma Quality, Attack Intensityn, Acidity, Astringency, Alcohol, Balance, Smooth, Bitterness, Intensity, Harmony, Overall Quality, Typical}
+
+\section{Centrer-réduire les variables quantitatives}
+
+Nous allons centrer-réduire les variables quantitatives à l'aide de la fonction \textbf{"scale"} comme suit:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{2.PNG}
+}
+\caption{Code R: Centrer-réduire les variables}
+\end{figure}
+
+\subsection{Barycentre du nuage se trouve-il a l'origine?}
+
+Après avoir centré-réduit les variables quantitatives, on calcul le barycentre du nuage:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{1.PNG}
+}
+\caption{Code R: Calcul de du barycentre et de la distance entre le barycentre et l'origine}
+\end{figure}
+
+On obtient le résultat suivant:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{4.PNG}
+}
+\caption{La distance entre le barycentre du nuage et l'origine est presque égal à 0}
+\end{figure}
+
+Le barycentre se trouve donc a l’origine.
+
+\subsection{L'inertie totale du nuage est-elle égale au nombre des variables?}
+
+On calcul aussi l’inertie totale du nuage afin de la comparer au nombre des variables:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{3.PNG}
+}
+\caption{Code R: Le Barycentre du nuage se trouve bien à l'origine}
+\end{figure}
+
+\newpage
+
+On obtient le résultat suivant:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{5.PNG}
+}
+\caption{L'inertie total est égal au nombre des variables}
+\end{figure}
+
+Donc l'inertie total est égal au nombre des variables.
+
+\section{Calcul des poids et des barycentres des trois appellations (Bourgueil, Chinon, Saumur)}
+
+On calcule les poids des trois appellations \textbf{Chinon, Bourgueil, Saumur}:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{6.PNG}
+}
+\caption{Code R -Poids des trois appellations}
+\end{figure}
+
+On obtient:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{8.PNG}
+}
+\caption{Résultats poids des trois appellations}
+\end{figure}
+
+Puis, On calcule leurs barycentres:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=1]{7.PNG}
+}
+\caption{Code R -Barycentres des trois appellations}
+\end{figure}
+
+On obtient les résultats suivants:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=0.5]{9.PNG}
+}
+\caption{Résultats Barycentres des trois appellations}
+\end{figure}
+
+\newpage
+
+On calcul maintenant les normes euclidiennes carrées de ces trois barycentres et on obtient les résultats suivant:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=0.8]{10.PNG}
+}
+\caption{Code R et Résultat - Normes euclidiennes carrées des barycentres}
+\end{figure}
+
+On en déduit l'inertie inter-appellation:
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=0.8]{11.PNG}
+}
+\caption{Code R et Résultat - Inertie inter-appellation}
+\end{figure}
+
+\newpage
+
+Le $R^2$ de la partition des vins en appellations:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=0.8]{12.PNG}
+}
+\caption{Code R et Résultat - $R^2$ de la partition des vins en appellations}
+\end{figure}
+
+On remarque que $R^2 = 0.104056$ et donc l'appellation n'explique que $11\%$ des disparités sensorielles entre les
+vins de Loire.
+\section{les variables qui sont les plus liées à l'appellation}
+ On cherche & savoir maintenant quelles sont les variables qui sont les plus liées à l'appellation, après avoir calculer le $R^2$ de chaque variable sensorielle, on obtient le résultat suivant:
+ 
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=0.8]{MatriceR2.PNG}
+}
+\caption{$R^2$ de chaque variable sensorielle}
+\end{figure}
+
+On peut conclure alors que les variables les plus liées à l'appellation sont: " Odor.Intensity", "Phenolic", "Odor.Intesity.Before.Shaking", "Plante" et "Acidity".
+les moins liées sont: "Fruity", "Quality.Of.odour", "Flower", "Spice.before.shaking" et "Typical".
+
+Pour finir, on calcule la moyenne arithmétique des $R^2$ des variables à l'aide du code suivant, et on obtient:
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[scale=0.8]{R222.PNG}
+}
+\caption{Code R et Résultat - $R^2$ de la partition}
+\end{figure}
+
+Ce qui est égale au $R^2$ de la partition.
+\chapter*{Conclusion}
+Dans ce TP, nous avons eu l'occasion de nous familiariser avec des certaines notions fondamentales de l'analyse des données multidimensionnelles (tel que le calcul des barycentres, le calcul des normes euclidiennes, ainsi que le calcul d'inertie). Ces notions vont nous êtres très utiles pour les TP à venir.
+\input{Annexes}

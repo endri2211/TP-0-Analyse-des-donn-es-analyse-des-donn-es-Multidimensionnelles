@@ -1,0 +1,62 @@
+\begin{appendices}
+\chapter{Code R TP 0}
+\label{Code R} 
+\begin{lstlisting} 
+# Importation des donnees
+Wine<-read.csv("~/M1 Biostat/ADM/des bases de données/wine.csv")
+# Centrer reduire les variables quatitatives
+Wine_cent_red<-scale(Wine[4:32])
+#Barycentre du nuage de point
+Barycenter<-colMeans(Wine_cent_red)
+# La distance euclidienne entre le barycentre du nuage et l'origine
+Dist_Eucl<-sqrt(sum(Barycenter^2))
+#Inertie
+Inertie=0
+for(i in 1:29)
+{
+Inertie = Inertie + var(Wine_cent_red[,i])
+}
+# Poids des Appellations
+tab<-cbind(Wine[,1:3],Wine_cent_red)
+Chinon<-tab[tab$Labe=="Chinon",]
+Bourgeuil<-tab[tab$Label=="Bourgueuil",]
+Samur<-tab[tab$Label=="Saumur",]
+poid_Chinon<-nrow(Chinon)/21
+poid_Bourgeuil<-nrow(Bourgeuil)/21
+poid_Samur<-nrow(Samur)/21
+Poids<-c(poid_Chinon,poid_Bourgeuil,poid_Samur)
+Poids
+# Barycentre Appellation
+Barycentre_Chinon<-colMeans(Chinon[,4:32])
+Barycentre_Bourgeuil<-colMeans(Bourgeuil[,4:32])
+Barycentre_Samur<-colMeans(Samur[,4:32])
+# Normes Euclidiennes
+Normes_Eucl<-c(crossprod(Barycentre_Chinon),crossprod(Barycentre_Bourgeuil),crossprod(Barycentre_Samur))
+#Inertie Inter
+Inertie_inter_appelation<-crossprod(Poids,Normes_Eucl)
+#R2
+R2<-Inertie_inter_appelation/29
+# Nos barycentres
+B_Matrix <- matrix(c(Barycentre_Chinon,Barycentre_Bourgeuil,Barycentre_Samur), nrow = 29, ncol = 3)
+colnames(B_Matrix) <- c("B.Chinon","B.Bourgueuil","B.Samur")
+rownames(B_Matrix) <- c(1:29)
+B_Matrix
+l = 0
+Vec_R2 <- vector(mode ="numeric", length = 29)
+for (i in 1:29)
+{
+N = 0
+for (j in 1:3)
+{
+N = (B_Matrix[i,j])^2*Poids[j] + N
+}
+l = 1 + l
+Vec_R2[l] <- N
+}
+Matrix_R2 <- matrix(c(Vec_R2), nrow=29, ncol=1, byrow=T)
+row.names(Matrix_R2)<-colnames(Wine[,4:32])
+colnames(Matrix_R2)<-c("R2")
+# R2 = R2
+sum(Matrix_R2)/29
+\end{lstlisting} 
+\end{appendices}

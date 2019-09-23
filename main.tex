@@ -1,0 +1,139 @@
+\documentclass[paper=a4,pagesize=auto,11pt,twoside=true,parskip=half,abstract=on,bibliography=totoc]{report}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{appendix}
+\usepackage{chngcntr}
+\usepackage{hyperref}
+%\usepackage{color}
+\usepackage[usenames,dvipsnames]{color} 
+\usepackage[english,french]{babel}
+\usepackage{listings}
+\lstset{ 
+  language=R,                     % the language of the code
+  basicstyle=\small\ttfamily, % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\small\color{Blue},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  keywordstyle=\color{RoyalBlue},      % keyword style
+  commentstyle=\color{YellowGreen},   % comment style
+  stringstyle=\color{ForestGreen}      % string literal style
+}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fontenc}
+\usepackage[utf8]{inputenc}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[final]{pdfpages} 
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{fancyhdr}
+\usepackage{dsfont}
+\usepackage{comment}
+\usepackage[a4paper, hmargin=30mm, vmargin=50mm]{geometry}
+%\usepackage{fancyref}
+%% Mise en page des théorèmes, lemme etc...
+
+
+\newtheorem{theorem}{Théorème}[chapter]
+\newtheorem{corollary}{Corollaire}[theorem]
+\newtheorem{lemma}[theorem]{Lemme}
+
+
+\theoremstyle{plain}
+
+\newtheorem{thm}{Théorème}[chapter]
+%\newtheorem{lemma}{Lemme}[chapter]
+%\newtheorem{proof}{Preuve}
+%\theoremstyle{prop}
+\newtheorem{prop}{Proposition}[chapter]
+\newtheorem{cor}{Corollaire}
+\theoremstyle{definition}
+\newtheorem{definition}{Définition}[chapter]
+%\newtheorem{defn}{Définition}[chapter]
+%\newtheorem{conj}{Conjecture}[chapter]
+\newtheorem{exmp}{Exemple}[chapter]
+\theoremstyle{remark}
+\newtheorem{remark}{Remarque}
+\newtheorem{note}{Note}
+\newtheorem{case}{Cas particulier}
+%\theoremstyle{Proof}
+\newtheorem{Proof}{Preuve}[chapter]
+\renewcommand{\floatpagefraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+%\usepackage[engilsh]{babel}
+\usepackage{csquotes}
+\usepackage[section]{placeins}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{cleveref}
+%\hypersetup{
+%    hyperfigures = true,
+%    colorlinks = true,
+%    linkcolor=green
+%    }
+    
+\setcounter{topnumber}{9}
+\setcounter{bottomnumber}{9}
+\setcounter{totalnumber}{20}
+\setcounter{dbltopnumber}{9}
+
+
+\renewcommand{\H}{\mathcal H}
+\providecommand{\R}{\mathbb R}
+\providecommand{\N}{\mathbb N}
+\providecommand{\prs}[2]{\langle #1, #2\rangle}
+\begin{document}
+\begin{titlepage}
+  \begin{sffamily}
+  \begin{center}
+    \textsc{\LARGE Université de Montpellier}\\[2cm]
+    \includegraphics[scale=2]{logo-um.png}~\\[1.5cm]
+    \textsc{\LARGE Analyse des Données Multidimensionnelles}\\[1.5cm]
+
+    \HRule \\[0.3cm]
+    { \huge\bfseries - TP 0 -
+    
+    Quelques manipulations élémentaires autour de l'inertie 
+    
+    (des vins de Loire) \\[0.4cm] }
+    \HRule \\[2cm]
+    \begin{minipage}{0.4\textwidth}
+      \begin{center} \large
+         \textsc{KANDOUCI Walid}\\
+      \end{center}
+    \end{minipage}
+
+
+    \vfill
+
+    % Bottom of the page
+    {\large 2019 - 2020}
+
+  \end{center}
+  \end{sffamily}
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+\input{chapters}
+
+\end{document}
